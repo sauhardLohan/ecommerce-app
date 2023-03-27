@@ -6,6 +6,7 @@ function Navbar(props){
         <div id={styles.navbar}>
             <div>
                 <span>eCommerce</span>
+                
                 <Link to="/" style={{marginLeft:50}} >Products</Link>
                 <Link to="/create-product" style={{marginLeft:50}} >Add a Product</Link>
             </div>
