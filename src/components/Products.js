@@ -5,7 +5,7 @@ import ProductItem from "./ProductItem";
   // console.log(dispatch);
   // console.log(products);
     return (
-        <div id="">
+        <div >
           {products.map((product)=>{ return <ProductItem product={product} dispatch={dispatch} key={`product-${product.id}`} />})}
         </div>
     )

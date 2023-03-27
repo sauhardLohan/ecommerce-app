@@ -3,7 +3,10 @@ import { ADD_PRODUCT, ADD_PRODUCTS, ADD_TO_CART, CANCEL_EDIT_PRODUCT, DELETE_PRO
 const initialState={
     products:[],
     sortProducts:false,
-    cart:[]
+    cart:[],
+    deletingProduct:false,
+    updatingProduct:false,
+    addingProducts:false
 }
 
 function findProduct(id,products)

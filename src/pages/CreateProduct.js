@@ -20,7 +20,7 @@ function CreateProduct(props){
       <div className={styles.container}>
        
         <div className={styles.createPost} onSubmit={handleSubmit}>
-          <h1>Create Post</h1>
+          <h1>Add a Product</h1>
           <form>
             <div className={styles.formField}>
               <label>

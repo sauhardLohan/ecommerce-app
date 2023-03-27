@@ -92,7 +92,6 @@ export function handleGetProducts(){
                     edit:false
                 }
             })
-            // console.log("new Products",newProducts);
             dispatch(addProducts(newProducts));
         }
     }
@@ -105,13 +104,6 @@ export function handleDeleteProduct(id){
         if(response.success)
         {
             console.log(response);
-            // const newProducts=response.data.map((product)=>{
-            //     return{
-            //         ...product,
-            //         edit:false
-            //     }
-            // })
-            // console.log("new Products",newProducts);
             dispatch(deleteAProduct(id));
         }
     }
@@ -124,15 +116,7 @@ export function handleUpdateProduct(id,brand,description,price,rating,title){
         if(response.success)
         {
             console.log(response.data);
-            // const newProducts=response.data.map((product)=>{
-            //     return{
-            //         ...product,
-            //         edit:false
-            //     }
-            // })
-            // console.log("new Products",newProducts);
             dispatch(saveEditProduct(response.data));
-            // dispatch(cancelEditProduct(response.data.id));
         }
     }
     
@@ -146,15 +130,7 @@ export function handleAddProduct(brand,description,price,rating,title,image){
         {
             console.log(response.data);
             dispatch(addAProduct(response.data));
-            // const newProducts=response.data.map((product)=>{
-            //     return{
-            //         ...product,
-            //         edit:false
-            //     }
-            // })
-            // console.log("new Products",newProducts);
-            // dispatch(saveEditProduct(response.data));
-            // dispatch(cancelEditProduct(response.data.id));
+            
         }
     }
     

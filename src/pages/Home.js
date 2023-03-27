@@ -11,8 +11,20 @@ function Home(props){
       dispatch(handleGetProducts());
     }
     return (
-        <div  style={{border:"2px solid red",height:"90vh"}}>
-            {sortProducs?<button onClick={handleUnSortProducts}>Sort by price  X </button>:<button onClick={handleSortProducts}>Sort by price</button>}
+        <div id={styles.homeContainer} >
+          <div id={styles.sortUnsort}>
+          {sortProducs?
+          <div id={styles.unsort}>
+          <span>Sort by price  </span>
+          <button onClick={handleUnSortProducts}>X </button>
+
+
+          </div>
+            :
+            <button onClick={handleSortProducts}>Sort by price</button>
+            }
+          </div>
+            
             
             <Products/>
         </div>

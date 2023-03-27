@@ -1,12 +1,18 @@
 import styles from '../styles/cart.module.css';
 import {connect } from 'react-redux';
+import CartItem from '../components/CartItem';
 function Cart(props){
-  const {cart}=props;
+  const {cart,dispatch}=props;
   console.log(cart);
+  if(cart.length===0)
+  {
+    return (<h1 style={{textAlign:"center"}}>No Items In Cart</h1>)
+  }
     return (
-        <div id="navbar">
-            <h1>Cart</h1>
-        </div>
+      <div >
+
+      {cart.map((cartItem)=>{ return <CartItem cartItem={cartItem} dispatch={dispatch} key={`product-${cartItem.id}`} />})}
+    </div>
     )
 }
 function mapStateToProps(state)
