@@ -137,12 +137,12 @@
   z-index: -1;
 }
 
-#productHelp .btnNotInCart {
+#productHelp #btnNotInCart {
   background-color: #d62b18;
   width: 180px;
 }
 
-#productHelp .btnNotInCart:after {
+#productHelp #btnNotInCart:after {
   background-color: #f6391c;
   width: 180px;
 }
