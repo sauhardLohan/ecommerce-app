@@ -1,25 +1,31 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { editProduct,cancelEditProduct, handleUpdateProduct, handleDeleteProduct, addToCart } from "../actions";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
+
+import { editProduct,cancelEditProduct, handleUpdateProduct, handleDeleteProduct, addToCart, removeFromCart } from "../actions";
 import styles from '../styles/productItem.module.css';
 import Stars_5 from '../images/5_stars.png';
 import Stars_4 from '../images/4_stars.png';
 import Stars_3 from '../images/3_stars.png';
 import Stars_2 from '../images/2_stars.png';
 import Star_1 from '../images/1_star.png';
+import Delete_Image from '../images/delete.png';
+import Deleting_Image from '../images/deleting.png';
 
 
 export default function ProductItem(props){
-    const {product,dispatch}=props;
+    const {product,dispatch,productInCart,updatingProduct,deletingProduct}=props;
     const {title,brand,price,rating,description,edit,image,id}=product;
     const [cTitle,setTitle]=useState(title);
     const [cBrand,setBrand]=useState(brand);
     const [cPrice,setPrice]=useState(price);
     const [cRating,setRating]=useState(rating);
     const [cDescription,setDescription]=useState(description);
+    const [updating,setUpdating]=useState(false);
+    const [deleting,setDeleting]=useState(false)
     const roundedRating=Math.round(rating);
-    const ratingImage=roundedRating===5?Stars_5:roundedRating===4?Stars_4:roundedRating===3?Stars_3:roundedRating===2?Stars_2:Star_1
-
+    const ratingImage=roundedRating===5?Stars_5:roundedRating===4?Stars_4:roundedRating===3?Stars_3:roundedRating===2?Stars_2:Star_1;
     const handleEditButtonClick=()=>{
         dispatch(editProduct(id));
         // console.log(dispatch)
@@ -29,10 +35,12 @@ export default function ProductItem(props){
         // console.log(dispatch)
     }
     const handleSaveButtonClick=()=>{
+      setUpdating(true);
         dispatch(handleUpdateProduct(id,cBrand,cDescription,cPrice,cRating,cTitle));
         // console.log(dispatch)
     }
     const handleDeleteButtonClick=()=>{
+      setDeleting(true);
         dispatch(handleDeleteProduct(id));
         // console.log(dispatch)
     }
@@ -41,52 +49,13 @@ export default function ProductItem(props){
         dispatch(addToCart(product));
         // console.log(dispatch)
     }
+    const handleRemoveFromCartClick=()=>{
+      console.log("fijob",product);
+      dispatch(removeFromCart(product));
+      // console.log(dispatch)
+  }
       return (
-        
-        //   <div id="">
-        //     <div>
-        //         <img src={image} width={400} alt={`image-${title}`}/>
-        //         <div>
-        //             {edit?
-        //             <div>
-        //                 <input value={cTitle} onChange={(e)=>{setTitle(e.target.value)}}></input> 
-        //                 <input value={cBrand} onChange={(e)=>{setBrand(e.target.value)}}></input>                
-        //                 <input value={cPrice} onChange={(e)=>{setPrice(e.target.value)}}></input>                
-        //                 <input value={cRating} onChange={(e)=>{setRating(e.target.value)}}></input> 
-        //             </div>:
-        //             <div>
-        //                 <Link to={`/product/${product.id}`} >{title}</Link>
-        //                 <p>{brand}</p>
-        //                 <p>{price}</p>
-        //                 <p>{rating}</p>
-        //             </div>
-        //             }
-                    
-        //         </div>
-        //     </div>
-        //     <div>
-        //         {
-        //             edit?
-        //             <textarea value={cDescription} onChange={(e)=>{setDescription(e.target.value)}}></textarea> :
-        //             <p>{description}</p>
-
-        //         }
-                
-        //         {edit?
-        //         <div>
-        //             <button onClick={handleCancelButtonClick}>CANCEL</button>
-        //             <button onClick={handleSaveButtonClick} >SAVE</button>
-        //         </div>:
-        //         <div>
-        //             <button onClick={handleAddToCartClick} >ADD TO CART</button>
-        //             <img src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png" onClick={handleEditButtonClick} alt="edit-icon" width={40} />
-        //             <img src="https://cdn-icons-png.flaticon.com/512/216/216658.png" onClick={handleDeleteButtonClick} alt="delete-icon" width={40} />
-        //         </div>
-
-        //         }
-                
-        //     </div>
-        //   </div>
+        <>
     <div id={styles.container}>
       <div className={styles.productContainer}>
         <div className={styles.productDetail}>
@@ -107,8 +76,7 @@ export default function ProductItem(props){
             <p>Price : {price}</p>
             <div className={styles.ratingContainer}>
               <img src={ratingImage} alt={`rating-${rating}`} className={styles.ratings}/>
-            {/* <p>{rating}</p> */}
-               {/* <img src="https://cdn-icons-png.flaticon.com/512/10125/10125652.png" />  */}
+
             </div>
             </>
         
@@ -126,7 +94,7 @@ export default function ProductItem(props){
           <div className={styles.productChange}>
             <div>
             <button onClick={handleCancelButtonClick} style={{marginRight:40}}>CANCEL</button>
-            <button onClick={handleSaveButtonClick} >SAVE</button>
+            <button onClick={handleSaveButtonClick} disabled={updatingProduct} >{updating && updatingProduct?"SAVING...":"SAVE"}</button>
             </div>
             
           </div>
@@ -136,10 +104,24 @@ export default function ProductItem(props){
           <p>{description}</p>
           </div>
           <div className={styles.productChange}>
-            <button onClick={handleAddToCartClick}>Add to cart</button>
+            {productInCart?<button className={styles.btnNotInCart} onClick={handleRemoveFromCartClick}>Remove from cart</button>:<button  onClick={handleAddToCartClick}>Add to cart</button>}
             <img src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png" onClick={handleEditButtonClick} alt="edit-icon" />
-            <img src="https://cdn-icons-png.flaticon.com/512/1632/1632602.png" onClick={handleDeleteButtonClick} alt="delete-icon" />
+            {deleting && deletingProduct?<img src={Deleting_Image}  style={{cursor:"default"}} alt="deleting-icon" />:<img src={Delete_Image}  onClick={handleDeleteButtonClick} alt="delete-icon" />}
+            
           </div>
+          <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+
                 </>
 
             }
@@ -147,6 +129,7 @@ export default function ProductItem(props){
         </div>
       </div>
     </div>
+    </>
 
       )
   }

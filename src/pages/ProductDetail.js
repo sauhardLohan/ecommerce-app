@@ -1,8 +1,7 @@
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { editProduct,cancelEditProduct, handleUpdateProduct, handleDeleteProduct, addToCart } from "../actions";
+import { editProduct,cancelEditProduct, handleUpdateProduct, handleDeleteProduct, addToCart, removeFromCart } from "../actions";
 import styles from '../styles/productItem.module.css';
 import Stars_5 from '../images/5_stars.png';
 import Stars_4 from '../images/4_stars.png';
@@ -10,7 +9,7 @@ import Stars_3 from '../images/3_stars.png';
 import Stars_2 from '../images/2_stars.png';
 import Star_1 from '../images/1_star.png';
 function ProductDetail(props) {
-  const { products } = props;
+  const { products,cart } = props;
   const { productId } = useParams();
   if (products.length === 0) {
     return;
@@ -25,20 +24,19 @@ function ProductDetail(props) {
     const roundedRating=Math.round(rating);
     const ratingImage=roundedRating===5?Stars_5:roundedRating===4?Stars_4:roundedRating===3?Stars_3:roundedRating===2?Stars_2:Star_1
 
-    const handleEditButtonClick=()=>{
-        dispatch(editProduct(id));
-        // console.log(dispatch)
-    }
-    
-    const handleDeleteButtonClick=()=>{
-        dispatch(handleDeleteProduct(id));
-        // console.log(dispatch)
-    }
+    function isProductInCart(){
+    return cart.indexOf(product)===-1?false:true
+  }
     const handleAddToCartClick=()=>{
         console.log("fijob",product);
         dispatch(addToCart(product));
         // console.log(dispatch)
     } 
+    const handleRemoveFromCartClick=()=>{
+      console.log("fijob",product);
+      dispatch(removeFromCart(product));
+      // console.log(dispatch)
+  }
   return (
     <div id={styles.container}>
     <div className={styles.productContainer}>
@@ -67,7 +65,9 @@ function ProductDetail(props) {
         <p>{description}</p>
         </div>
         <div className={styles.productChange}>
-          <button onClick={handleAddToCartClick}>Add to cart</button>
+        {isProductInCart()?<button className={styles.btnNotInCart} onClick={handleRemoveFromCartClick}>Remove from cart</button>:<button  onClick={handleAddToCartClick}>Add to cart</button>}
+
+          
           
         </div>
            
@@ -81,6 +81,7 @@ function ProductDetail(props) {
 function mapStateToProps(state) {
   return {
     products: state.products,
+    cart: state.cart
   };
 }
 

@@ -8,13 +8,33 @@ export const SAVE_EDIT_PRODUCT="SAVE_EDIT_PRODUCT";
 export const DELETE_PRODUCT="DELETE_PRODUCT";
 export const ADD_PRODUCT="ADD_PRODUCT";
 
+export const ADDING_PRODUCTS="ADDING_PRODUCTS";
+export const UPDATING_PRODUCT="UPDATING_PRODUCT";
+export const DELETING_PRODUCT="DELETING_PRODUCT";
+export const ADDING_A_PRODUCT="ADDING_A_PRODUCT";
+
 
 export const ADD_TO_CART="ADD_TO_CART"
+export const REMOVE_FROM_CART="REMOVE_FROM_CART"
+
+export const SHOW_NOTIFICATION="SHOW_NOTIFICATION"
+
+export function showNotification(message,success)
+{
+    return{
+        type:SHOW_NOTIFICATION,
+        notification:{
+            message,
+            success
+        }
+    }
+}
+
+
 
 
 export function addProducts(products)
 {
-    
     return{
         type:ADD_PRODUCTS,
         products
@@ -64,14 +84,6 @@ export function deleteAProduct(id)
     }
 }
 
-export function addToCart(product)
-{
-    return{
-        type:ADD_TO_CART,
-        product
-    }
-}
-
 export function addAProduct(product)
 {
     return{
@@ -80,8 +92,54 @@ export function addAProduct(product)
     }
 }
 
+export function addingProducts()
+{
+    return{
+        type:ADDING_PRODUCTS,
+    }
+}
+
+export function updatingProduct()
+{
+    return{
+        type:UPDATING_PRODUCT,
+    }
+}
+
+export function deletingProduct()
+{
+    return{
+        type:DELETING_PRODUCT,
+    }
+}
+
+export function addingAProduct()
+{
+    return{
+        type:ADDING_A_PRODUCT,
+    }
+}
+
+export function addToCart(product)
+{
+    return{
+        type:ADD_TO_CART,
+        product
+    }
+}
+export function removeFromCart(product)
+{
+    return{
+        type:REMOVE_FROM_CART,
+        product
+    }
+}
+
+
+
 export function handleGetProducts(){
     return async function(dispatch){
+        dispatch(addingProducts());
         const response= await getProducts();
         if(response.success)
         {
@@ -100,11 +158,13 @@ export function handleGetProducts(){
 
 export function handleDeleteProduct(id){
     return async function(dispatch){
+        dispatch(deletingProduct());
         const response= await deleteProduct(id);
         if(response.success)
         {
             console.log(response);
             dispatch(deleteAProduct(id));
+            dispatch(showNotification("Product Deleted Successfully",true))
         }
     }
     
@@ -112,11 +172,16 @@ export function handleDeleteProduct(id){
 
 export function handleUpdateProduct(id,brand,description,price,rating,title){
     return async function(dispatch){
+        dispatch(updatingProduct());
         const response= await updateProduct(id,brand,description,price,rating,title);
         if(response.success)
         {
             console.log(response.data);
             dispatch(saveEditProduct(response.data));
+            dispatch(showNotification("Product Updated Successfully",true))
+        }
+        else{
+            dispatch(showNotification("Product Not Updated Successfully",false))
         }
     }
     
@@ -125,12 +190,13 @@ export function handleUpdateProduct(id,brand,description,price,rating,title){
 export function handleAddProduct(brand,description,price,rating,title,image){
     return async function(dispatch){
         console.log("fgjpofb");
+        dispatch(addingAProduct());
         const response= await addProduct(brand,description,price,rating,title,image);
         if(response.success)
         {
             console.log(response.data);
             dispatch(addAProduct(response.data));
-            
+            dispatch(showNotification("Product Added Successfully",true))
         }
     }
     

@@ -9,8 +9,14 @@ function CreateProduct(props){
     const [rating,setRating]=useState("");
     const [image,setImage]=useState("");
     const [description,setDescription]=useState("");
-    const {dispatch}=props;
+    const {dispatch,addingAProduct}=props;
+    console.log(addingAProduct);
     const handleSubmit=(e)=>{
+      if(rating>5)
+      {
+        return;
+      }
+      
         console.log("jdjdjdj");
         e.preventDefault();
         dispatch(handleAddProduct(brand,description,price,rating,title,image));
@@ -42,7 +48,7 @@ function CreateProduct(props){
             </div>
             <div className={styles.formField}>
               <label>
-                Rating <span className={styles.imp}>*</span>
+                Rating (out of 5) <span className={styles.imp}>*</span>
               </label>
               <input required value={rating} onChange={(e)=>{setRating(e.target.value)}} />
             </div>
@@ -58,8 +64,8 @@ function CreateProduct(props){
               </label>
               <textarea required value={description} onChange={(e)=>{setDescription(e.target.value)}} ></textarea>
             </div>
-            <button type='submit' className={styles.createPostBtn}  >
-              Add
+            <button type='submit' disabled={addingAProduct} className={styles.createPostBtn} >
+              {addingAProduct?"Adding ...":"Add"}
             </button>
           </form>
         </div>
@@ -70,7 +76,7 @@ function CreateProduct(props){
 
 function mapStateToProps(state) {
     return {
-      products: state.products,
+      addingAProduct:state.addingAProduct
     };
   }
   

@@ -12,7 +12,7 @@
   .productContainer{
     width: 100%;
     height:13rem;
-    display: inline-flex;
+    display: inline-flex; 
     justify-content: space-between;
   }
   
@@ -54,6 +54,7 @@
   
   .productDetail .productHeading h2{
     margin-bottom: 0%;
+    font-size:1.3rem;
     /* color: rgb(41, 39, 39); */
   }
   .productDetail .productHeading h4{
@@ -190,18 +191,15 @@
     z-index: -1;
   }
   
-  /* .productHelp button:main,
-  .productHelp button:focus {
-    user-select: auto;
+  .productHelp .btnNotInCart{
+    background-color: #d62b18;
+    width:180px;
+    
   }
   
-  .productHelp button:hover:not(:disabled) {
-    filter: brightness(1.1);
-    -webkit-filter: brightness(1.1);
+  .productHelp .btnNotInCart:after{
+    background-color: #f6391c;
+    width:180px;
+
   }
-  
-  .productHelp button:disabled {
-    cursor: auto;
-  } */
-  
   

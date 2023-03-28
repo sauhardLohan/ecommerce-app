@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import {  addToCart } from "../actions";
+import {  addToCart, removeFromCart } from "../actions";
 import styles from '../styles/productItem.module.css';
 import Stars_5 from '../images/5_stars.png';
 import Stars_4 from '../images/4_stars.png';
@@ -16,10 +16,12 @@ export default function CartItem(props){
     const ratingImage=roundedRating===5?Stars_5:roundedRating===4?Stars_4:roundedRating===3?Stars_3:roundedRating===2?Stars_2:Star_1
 
     
-    const handleAddToCartClick=()=>{
-        dispatch(addToCart(cartItem));
-        // console.log(dispatch)
-    }
+
+    const handleRemoveFromCartClick=()=>{
+      // console.log("fijob",product);
+      dispatch(removeFromCart(cartItem));
+      // console.log(dispatch)
+  }
       return (
         
         //   <div id="">
@@ -94,7 +96,8 @@ export default function CartItem(props){
           <p>{description}</p>
           </div>
           <div className={styles.productChange}>
-            <button onClick={handleAddToCartClick}>Add to cart</button>
+        <button className={styles.btnNotInCart} onClick={handleRemoveFromCartClick}>Remove from cart</button>
+            
             
           </div>
                

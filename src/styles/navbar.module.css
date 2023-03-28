@@ -2,6 +2,12 @@
     display: flex;
     justify-content: space-between;
 } */
+#logo{
+  font-size: xx-large;
+  font-style: italic;
+  /* vertical-align: center; */
+  color: blue;
+}
 #cartNumber{
     position: absolute;
     bottom: -15%;
@@ -18,13 +24,14 @@
 #cartNumber p{
     margin: 0%;
 }
+
 #cartContainer{
     position: relative;
     margin-right: 24px;
 }
 .nav {
     display: flex;
-    background: #5d5d5e;
+    background: #2d2d2e;
     padding: 10px 20px;
     align-items: center;
     justify-content: space-between;

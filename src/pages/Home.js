@@ -2,13 +2,20 @@ import styles from '../styles/home.module.css';
 import { connect } from 'react-redux';
 import { Products } from '../components';
 import { handleGetProducts,sortProducts } from '../actions';
+
+import Loader from '../components/Loader';
 function Home(props){
-    const {sortProducs,dispatch,products}=props;
+    const {sortProducs,dispatch,products,addingProducts}=props;
     const handleSortProducts=()=>{
         dispatch(sortProducts(products));
     }
     const handleUnSortProducts=()=>{
       dispatch(handleGetProducts());
+    }
+    console.log(addingProducts);
+    if(addingProducts)
+    {
+      return <Loader />
     }
     return (
         <div id={styles.homeContainer} >
@@ -16,7 +23,7 @@ function Home(props){
           {sortProducs?
           <div id={styles.unsort}>
           <span>Sort by price  </span>
-          <button onClick={handleUnSortProducts}>X </button>
+          <button onClick={handleUnSortProducts}>   X </button>
 
 
           </div>
@@ -34,7 +41,8 @@ function mapStateToProps(state)
 { 
   return {
     sortProducs:state.sortProducts,
-    products:state.products
+    products:state.products,
+    addingProducts:state.addingProducts,
   }
 }
 

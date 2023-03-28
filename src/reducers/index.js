@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, ADD_PRODUCTS, ADD_TO_CART, CANCEL_EDIT_PRODUCT, DELETE_PRODUCT, SAVE_EDIT_PRODUCT, SET_EDIT_PRODUCT, SORT_PRODUCTS } from "../actions";
+import { ADDING_A_PRODUCT, ADDING_PRODUCTS, ADD_PRODUCT, ADD_PRODUCTS, ADD_TO_CART, CANCEL_EDIT_PRODUCT, DELETE_PRODUCT, DELETING_PRODUCT, REMOVE_FROM_CART, SAVE_EDIT_PRODUCT, SET_EDIT_PRODUCT, SORT_PRODUCTS, UPDATING_PRODUCT } from "../actions";
 
 const initialState={
     products:[],
@@ -6,7 +6,8 @@ const initialState={
     cart:[],
     deletingProduct:false,
     updatingProduct:false,
-    addingProducts:false
+    addingProducts:false,
+    addingAProduct:false
 }
 
 function findProduct(id,products)
@@ -40,7 +41,13 @@ export default function productsReducer(state=initialState,action){
         case ADD_PRODUCTS:
             return{...state,
                 products:action.products,
+                addingProducts:false,
                 sortProducts:false
+            }
+        case ADDING_PRODUCTS:
+            return{
+                ...state,
+                addingProducts:true
             }
         case SORT_PRODUCTS:
             return{
@@ -63,22 +70,44 @@ export default function productsReducer(state=initialState,action){
             return{
                 ...state,
                 products:[...setUpdateProduct(state.products,action.product)],
-
+                updatingProduct:false
             }
+        case UPDATING_PRODUCT:
+        return{
+            ...state,
+            updatingProduct:true
+        }
         case DELETE_PRODUCT:
             return{
                 ...state,
-                products:[...setDeleteProduct(action.id,state.products)]
+                products:[...setDeleteProduct(action.id,state.products)],
+                deletingProduct:false
             }
+        case DELETING_PRODUCT:
+        return{
+            ...state,
+            deletingProduct:true
+        }
         case ADD_PRODUCT:
         return{
             ...state,
-            products:[action.product,...state.products]
+            products:[action.product,...state.products],
+            addingAProduct:false
+        }
+        case ADDING_A_PRODUCT:
+        return{
+            ...state,
+            addingAProduct:true
         }
         case ADD_TO_CART:
             return{
                 ...state,
                 cart:[action.product,...state.cart]
+            }
+        case REMOVE_FROM_CART:
+            return{
+                ...state,
+                cart:state.cart.filter((cartItem)=>{return cartItem.id!==action.product.id})
             }
         default:
             return state;
