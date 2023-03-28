@@ -1,172 +1,163 @@
-/* #navbar{
-    display: flex;
-    justify-content: space-between;
-} */
-#logo{
+#logo {
   font-size: xx-large;
   font-style: italic;
-  /* vertical-align: center; */
   color: blue;
 }
-#cartNumber{
-    position: absolute;
-    bottom: -15%;
-    left:-15%;
-    color: rgb(250, 87, 87);
-    background: #ece60e;
-    width: 20px;
-    height: 20px;
-    /* display: flex; */
-    text-align: center;
-    padding: 2px;
-    border-radius: 50%;
+#cartNumber {
+  position: absolute;
+  bottom: -15%;
+  left: -15%;
+  color: rgb(250, 87, 87);
+  background: #ece60e;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  padding: 2px;
+  border-radius: 50%;
 }
-#cartNumber p{
-    margin: 0%;
+#cartNumber p {
+  margin: 0%;
 }
 
-#cartContainer{
-    position: relative;
-    margin-right: 24px;
+#cartContainer {
+  position: relative;
+  margin-right: 24px;
 }
 .nav {
-    display: flex;
-    background: #2d2d2e;
-    padding: 10px 20px;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav .leftDiv {
-    display: flex;
-    color: #fff;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 22px;
-  }
-  .nav a{
-    display: flex;
-    color: #fff;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 22px;
-  }
-  .nav a:hover{
-    color: rgb(5, 206, 206);
-  }
-  .logo {
-    color: #fff;
-    font-size: 35px;
-  }
-  .logoIcons {
-    font-size: 40px;
-    color: #ece60e;
-  }
-  .nav .userDp {
-    height: 40px;
-  }
-  .nav .user {
-    display: flex;
-    align-items: center;
-  }
-  .nav span {
-    margin-left: 10px;
-  }
-  .nav .rightNav {
-    display: flex;
-    color: #fff;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 22px;
-  }
-  .nav .navLinks ul {
-    display: flex;
-    list-style-type: none;
-  }
-  .nav .navLinks ul li {
-    padding: 0 4px;
-  }
-  .nav .navLinks ul li a {
-    text-decoration: none;
-    color: #fff;
-  }
-  .nav .navLinks ul li a:hover {
-    text-decoration: underline;
-  }
-  .nav .navLinks ul li:hover {
-    cursor: pointer;
-  }
-  .nav .navLinks .logOut{
-    all: unset;
-    cursor: pointer;
-    
-  }
-  .nav .navLinks .logOut:hover{
-    text-decoration: underline;
-    
-  }
-  .searchContainer {
-    flex-grow: 0.5;
-    /* padding: 0 20px; */
-    position: relative;
-    display: flex;
-  }
-  
-  .searchContainer input {
-    background: #ffffff;
-    border: 1px solid #d0d0d0;
-    box-sizing: border-box;
-    border-radius: 3px;
-    height: 40px;
-    width: 100%;
-    font-size: 16px;
-    padding-left: 31px;
-    box-sizing: border-box;
-    flex-grow: 1;
-  }
-  .searchContainer input:focus {
-    outline: none;
-  }
-  .searchIcon {
-    height: 20px;
-    position: absolute;
-    top: 10px;
-    left: 7px;
-  }
-  .searchResults {
-    background: #fff;
-    flex-grow: 1;
-    border-radius: 0 0 3px 3px;
-    position: absolute;
-    width: 100%;
-    top: 40px;
-    border: 1px solid #e0e0e0;
-    z-index: 100;
-    max-height: 452px;
-    overflow: scroll;
-    /* display: none; */
-  }
-  .searchResults ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  .searchResults ul a {
-    text-decoration: none;
-    color: black;
-  }
-  .searchResultsRow {
-    display: flex;
-    align-items: center;
-    padding: 9px 14px;
-  }
-  .searchResultsRow:hover {
-    background-color: #eceffa;
-    cursor: pointer;
-  }
-  .searchResultsRow img {
-    height: 27px;
-  }
-  
+  display: flex;
+  background: #2d2d2e;
+  padding: 10px 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav .leftDiv {
+  display: flex;
+  color: #fff;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+}
+.nav a {
+  display: flex;
+  color: #fff;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+}
+.nav a:hover {
+  color: rgb(5, 206, 206);
+}
+.logo {
+  color: #fff;
+  font-size: 35px;
+}
+.logoIcons {
+  font-size: 40px;
+  color: #ece60e;
+}
+.nav .userDp {
+  height: 40px;
+}
+.nav .user {
+  display: flex;
+  align-items: center;
+}
+.nav span {
+  margin-left: 10px;
+}
+.nav .rightNav {
+  display: flex;
+  color: #fff;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+}
+.nav .navLinks ul {
+  display: flex;
+  list-style-type: none;
+}
+.nav .navLinks ul li {
+  padding: 0 4px;
+}
+.nav .navLinks ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+.nav .navLinks ul li a:hover {
+  text-decoration: underline;
+}
+.nav .navLinks ul li:hover {
+  cursor: pointer;
+}
+.nav .navLinks .logOut {
+  all: unset;
+  cursor: pointer;
+}
+.nav .navLinks .logOut:hover {
+  text-decoration: underline;
+}
+.searchContainer {
+  flex-grow: 0.5;
+  /* padding: 0 20px; */
+  position: relative;
+  display: flex;
+}
+
+.searchContainer input {
+  background: #ffffff;
+  border: 1px solid #d0d0d0;
+  box-sizing: border-box;
+  border-radius: 3px;
+  height: 40px;
+  width: 100%;
+  font-size: 16px;
+  padding-left: 31px;
+  box-sizing: border-box;
+  flex-grow: 1;
+}
+.searchContainer input:focus {
+  outline: none;
+}
+.searchIcon {
+  height: 20px;
+  position: absolute;
+  top: 10px;
+  left: 7px;
+}
+.searchResults {
+  background: #fff;
+  flex-grow: 1;
+  border-radius: 0 0 3px 3px;
+  position: absolute;
+  width: 100%;
+  top: 40px;
+  border: 1px solid #e0e0e0;
+  z-index: 100;
+  max-height: 452px;
+  overflow: scroll;
+  /* display: none; */
+}
+.searchResults ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.searchResults ul a {
+  text-decoration: none;
+  color: black;
+}
+.searchResultsRow {
+  display: flex;
+  align-items: center;
+  padding: 9px 14px;
+}
+.searchResultsRow:hover {
+  background-color: #eceffa;
+  cursor: pointer;
+}
+.searchResultsRow img {
+  height: 27px;
+}
