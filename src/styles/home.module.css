@@ -5,15 +5,11 @@
 #sortUnsort {
   display: flex;
   width: 90%;
-  /* margin: auto ; */
   height: fit-content;
   flex-direction: row-reverse;
   padding-top: 40px;
-  /* margin-inline: 40px; */
-  /* margin-top: 40px; */
 }
 
-/* CSS */
 #sortUnsort button {
   background: #ff4742;
   border: 1px solid #ff4742;

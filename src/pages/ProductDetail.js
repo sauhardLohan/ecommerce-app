@@ -48,33 +48,33 @@ function ProductDetail(props) {
     dispatch(removeFromCart(product));
   };
   return (
-    <div id={styles.container}>
-      <div id={styles.productContainer}>
-        <div id={styles.productDetail}>
-          <div id={styles.productImage}>
+    <div className={styles.container}>
+      <div className={styles.productContainer}>
+        <div className={styles.productDetail}>
+          <div className={styles.productImage}>
             <img src={image} alt={`${title}`} />
           </div>
         </div>
-        <div id={styles.productHelp}>
-          <div id={styles.productTitle}>
+        <div className={styles.productHelp}>
+          <div className={styles.productTitle}>
             <h1>{title}</h1>
             <p>Price : {price}</p>
           </div>
 
-          <h2 id={styles.productBrand}>{brand}</h2>
+          <h2 className={styles.productBrand}>{brand}</h2>
 
-          <div id={styles.productDescription}>
+          <div className={styles.productDescription}>
             <p>{description}</p>
             <img
               src={ratingImage}
               alt={`rating-${rating}`}
-              id={styles.ratings}
+              className={styles.ratings}
             />
           </div>
-          <div id={styles.productChange}>
+          <div className={styles.productChange}>
             {isProductInCart() ? (
               <button
-                id={styles.btnNotInCart}
+                className={styles.btnNotInCart}
                 onClick={handleRemoveFromCartClick}
               >
                 Remove from cart

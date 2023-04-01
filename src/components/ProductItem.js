@@ -65,7 +65,7 @@ export default function ProductItem(props) {
   };
   return (
     <>
-      <div id={styles.container}>
+      <div className={styles.container}>
         <div className={styles.productContainer}>
           <div className={styles.productDetail}>
             <div className={styles.productImage}>
@@ -151,6 +151,7 @@ export default function ProductItem(props) {
                 <div className={styles.productDescription}>
                   <p>{description}</p>
                 </div>
+                {id <= 28 && (
                 <div className={styles.productChange}>
                   {productInCart ? (
                     <button
@@ -162,8 +163,7 @@ export default function ProductItem(props) {
                   ) : (
                     <button onClick={handleAddToCartClick}>Add to cart</button>
                   )}
-                  {id <= 28 && (
-                    <>
+                  
                       <img
                         src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"
                         onClick={handleEditButtonClick}
@@ -182,9 +182,8 @@ export default function ProductItem(props) {
                           alt="delete-icon"
                         />
                       )}
-                    </>
-                  )}
-                </div>
+                 
+                </div>)}
               </>
             )}
           </div>

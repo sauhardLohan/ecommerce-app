@@ -1,27 +1,46 @@
 import { addProduct, deleteProduct, getProducts, updateProduct } from "../api";
 
+// action to add products from API to store
 export const ADD_PRODUCTS = "ADD_PRODUCTS";
+// action to sort products in list 
 export const SORT_PRODUCTS = "SORT_PRODUCTS";
+// action to set editing mode on for a product in list 
 export const SET_EDIT_PRODUCT = "SET_EDIT_PRODUCT";
+// action to cancel editing mode for a product in list 
 export const CANCEL_EDIT_PRODUCT = "CANCEL_EDIT_PRODUCT";
+// action to save product in list 
 export const SAVE_EDIT_PRODUCT = "SAVE_EDIT_PRODUCT";
+// action to delete product from list 
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
+// action to add new product to list 
 export const ADD_PRODUCT = "ADD_PRODUCT";
 
+// action to handle events before getting result for adding products to list from API
 export const ADDING_PRODUCTS = "ADDING_PRODUCTS";
+// action to handle events before getting result for updating product in list 
 export const UPDATING_PRODUCT = "UPDATING_PRODUCT";
+// action to handle events before getting result for deleting a product in list 
 export const DELETING_PRODUCT = "DELETING_PRODUCT";
+// action to handle events before getting result for adding a new product to list 
 export const ADDING_A_PRODUCT = "ADDING_A_PRODUCT";
 
+// action to handle events after performing action to get result for adding products to list from API
 export const DONE_ADDING_PRODUCTS = "DONE_ADDING_PRODUCTS";
+// action to handle events after performing action to get result for updating product in list 
 export const DONE_UPDATING_PRODUCT = "DONE_UPDATING_PRODUCT";
+// action to handle events after performing action to get result for deleting a product in list 
 export const DONE_DELETING_PRODUCT = "DONE_DELETING_PRODUCT";
+// action to handle events after performing action to get result for adding a new product to list 
 export const DONE_ADDING_A_PRODUCT = "DONE_ADDING_A_PRODUCT";
 
+// action to add product in cart 
 export const ADD_TO_CART = "ADD_TO_CART";
+// action to remove product from cart 
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+// action to set products in cart from local storage
 export const SETTING_CART = "SETTING_CART";
 
+// action to show notifications
 export const SHOW_NOTIFICATION = "SHOW_NOTIFICATION";
 
 export function showNotification(message, success) {
@@ -154,15 +173,20 @@ export function settingCart(cart) {
   };
 }
 
+//fetching products from API and storing in Local Storage if not present already
 export function handleGetProducts() {
   return async function (dispatch) {
     dispatch(addingProducts());
     if (localStorage.getItem("products")) {
       // localStorage.removeItem("products");
+      //getting products from local storage
       const dataLS = JSON.parse(localStorage.getItem("products"));
+      //dispatching addProducts action to add products in store 
       dispatch(addProducts(dataLS));
     } else {
+      //fetching products from API
       const response = await getProducts();
+      // if success adding a property to 
       if (response.success) {
         const newProducts = response.data.map((product) => {
           return {
@@ -173,7 +197,7 @@ export function handleGetProducts() {
         localStorage.setItem("products", JSON.stringify(newProducts));
         dispatch(addProducts(newProducts));
       } else {
-        dispatch(showNotification("Error while Showing Products", false));
+        dispatch(showNotification("Error while getting Products", false));
       }
     }
     // localStorage.removeItem("cart");

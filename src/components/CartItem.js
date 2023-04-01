@@ -27,7 +27,7 @@ export default function CartItem(props) {
     dispatch(removeFromCart(cartItem));
   };
   return (
-    <div id={styles.container}>
+    <div className={styles.container}>
       <div className={styles.productContainer}>
         <div className={styles.productDetail}>
           <div className={styles.productImage}>

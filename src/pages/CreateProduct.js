@@ -41,13 +41,13 @@ function CreateProduct(props) {
     dispatch(handleAddProduct(brand, description, price, rating, title, image));
   };
   return (
-    <div className={styles.container}>
-      <div className={styles.createPost} onSubmit={handleSubmit}>
+    <div id={styles.container}>
+      <div id={styles.addProduct} onSubmit={handleSubmit}>
         <h1>Add a Product</h1>
         <form>
-          <div className={styles.formField}>
+          <div id={styles.formField}>
             <label>
-              Title <span className={styles.imp}>*</span>
+              Title <span id={styles.imp}>*</span>
             </label>
             <input
               value={title}
@@ -56,9 +56,9 @@ function CreateProduct(props) {
               }}
             />
           </div>
-          <div className={styles.formField}>
+          <div id={styles.formField}>
             <label>
-              Brand <span className={styles.imp}>*</span>
+              Brand <span id={styles.imp}>*</span>
             </label>
             <input
               value={brand}
@@ -67,9 +67,9 @@ function CreateProduct(props) {
               }}
             />
           </div>
-          <div className={styles.formField}>
+          <div id={styles.formField}>
             <label>
-              Price <span className={styles.imp}>*</span>
+              Price <span id={styles.imp}>*</span>
             </label>
             <input
               value={price}
@@ -78,9 +78,9 @@ function CreateProduct(props) {
               }}
             />
           </div>
-          <div className={styles.formField}>
+          <div id={styles.formField}>
             <label>
-              Rating (out of 5) <span className={styles.imp}>*</span>
+              Rating (out of 5) <span id={styles.imp}>*</span>
             </label>
             <input
               value={rating}
@@ -89,9 +89,9 @@ function CreateProduct(props) {
               }}
             />
           </div>
-          <div className={styles.formField}>
+          <div id={styles.formField}>
             <label>
-              Image URL Address <span className={styles.imp}>*</span>
+              Image URL Address <span id={styles.imp}>*</span>
             </label>
             <input
               value={image}
@@ -100,9 +100,9 @@ function CreateProduct(props) {
               }}
             />
           </div>
-          <div className={styles.formField}>
+          <div id={styles.formField}>
             <label>
-              Description <span className={styles.imp}>*</span>
+              Description <span id={styles.imp}>*</span>
             </label>
             <textarea
               value={description}
@@ -114,7 +114,7 @@ function CreateProduct(props) {
           <button
             type="submit"
             disabled={addingAProduct}
-            className={styles.createPostBtn}
+            id={styles.addProductBtn}
           >
             {addingAProduct ? "Adding ..." : "Add"}
           </button>

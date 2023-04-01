@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 function Navbar(props) {
   return (
-    <div className={styles.nav}>
-      <div className={styles.leftDiv}>
+    <div id={styles.nav}>
+      <div id={styles.leftDiv}>
         <span id={styles.logo}>eCommerce</span>
         <Link to="/" style={{ marginLeft: 50 }}>
           Products
@@ -14,14 +14,14 @@ function Navbar(props) {
         </Link>
       </div>
 
-      <div className={styles.rightNav}>
-        <div className={styles.user}>
+      <div id={styles.rightNav}>
+        <div id={styles.cart}>
           <div id={styles.cartContainer}>
             <Link to="/cart">
               <img
                 src="https://cdn-icons-png.flaticon.com/512/9374/9374328.png"
                 alt=""
-                className={styles.userDp}
+                id={styles.cartImage}
               />
               <div id={styles.cartNumber}>
                 <p>{props.cartItemNumber}</p>

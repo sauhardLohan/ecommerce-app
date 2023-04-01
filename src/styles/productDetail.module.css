@@ -1,4 +1,4 @@
-#container {
+.container {
   height: fit-content;
   width: 90vw;
   margin: auto;
@@ -9,20 +9,20 @@
   position: relative;
 }
 
-#productContainer {
+.productContainer {
   width: 100%;
   height: 75vh;
   display: inline-flex;
   justify-content: space-between;
 }
 
-#productContainer #productDetail {
+.productContainer .productDetail {
   width: 60%;
   height: 100%;
   display: inline-flex;
 }
 
-#productContainer #productHelp {
+.productContainer .productHelp {
   width: 70%;
   height: 100%;
   color: rgb(56, 55, 55);
@@ -30,59 +30,59 @@
   flex-direction: column;
   /* padding: 20px; */
 }
-#productBrand {
+.productBrand {
   margin-bottom: 0%;
   color: #1899d6;
 }
-#productDetail #productImage {
+.productDetail .productImage {
   width: 90vh;
 
   height: 100%;
   margin-right: 20px;
 }
-#productDetail #productImage img {
+.productDetail .productImage img {
   width: 100%;
   height: 100%;
 }
 
-#productTitle {
+.productTitle {
   display: flex;
   justify-content: space-between;
   width: 90%;
   text-align: center;
   margin-top: 20px;
 }
-#productTitle h1 {
+.productTitle h1 {
   font-size: 2.5rem;
   margin: 0%;
   color: rgb(46, 191, 201);
 }
-#productTitle p {
+.productTitle p {
   margin-top: 5px;
   position: absolute;
   font-size: larger;
   right: 5%;
   bottom: 5%;
 }
-#ratings {
+.ratings {
   position: absolute;
   bottom: 10%;
 }
 
-#productHelp #productDescription {
+.productHelp .productDescription {
   width: 100%;
   height: 50%;
   font-family: Arial, Helvetica, sans-serif;
   font-size: x-large;
   position: relative;
 }
-#productHelp #productDescription p {
+.productHelp .productDescription p {
   line-height: 2.4rem;
   margin: 20px;
   margin-bottom: 5px;
 }
 
-#productHelp #productChange {
+.productHelp .productChange {
   width: 100%;
   flex-grow: 1;
   display: inline-flex;
@@ -90,14 +90,13 @@
   margin-right: 10px;
 }
 
-#productHelp #productChange img {
+.productHelp .productChange img {
   width: 47px;
   height: 47px;
   cursor: pointer;
 }
 
-/* CSS */
-#productHelp button {
+.productHelp button {
   background-color: #1899d6;
   border: solid transparent;
   border-radius: 16px;
@@ -110,7 +109,6 @@
   display: inline-block;
   font-size: 15px;
   font-weight: 700;
-
   margin: 0;
   outline: none;
   overflow: visible;
@@ -120,7 +118,7 @@
   transform: translateZ(0);
 }
 
-#productHelp button:after {
+.productHelp button:after {
   width: 120px;
 
   background-clip: padding-box;
@@ -137,12 +135,12 @@
   z-index: -1;
 }
 
-#productHelp #btnNotInCart {
+.productHelp .btnNotInCart {
   background-color: #d62b18;
   width: 180px;
 }
 
-#productHelp #btnNotInCart:after {
+.productHelp .btnNotInCart:after {
   background-color: #f6391c;
   width: 180px;
 }
