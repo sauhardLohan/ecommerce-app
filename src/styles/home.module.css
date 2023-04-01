@@ -15,7 +15,7 @@
   border: 1px solid #ff4742;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  color: #ffffff;
+  color: white;
   cursor: pointer;
   display: inline-block;
   font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
@@ -39,25 +39,20 @@
 }
 
 #unsort span {
-  background-color: initial;
-
+  background: white;
   border: 1px solid #ff4742;
   border-radius: 6px 0 0 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  box-sizing: border-box;
   color: #ff4742;
-
   display: inline-block;
   font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
   font-size: 16px;
   font-weight: 800;
-  line-height: 16px;
-  min-height: 40px;
+  max-height: 40px;
   outline: 0;
   padding: 12px 14px;
   text-align: center;
 }
 #unsort button {
   border-radius: 0 6px 6px 0;
-  border-left-color: 2px solid grey;
 }

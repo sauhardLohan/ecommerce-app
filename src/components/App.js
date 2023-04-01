@@ -6,6 +6,7 @@ import Navbar from "./Navbar";
 import { handleGetProducts } from "../actions";
 class App extends React.Component {
   componentDidMount() {
+    // getting products by dispatching action
     const { dispatch } = this.props;
     dispatch(handleGetProducts());
   }
@@ -26,9 +27,9 @@ class App extends React.Component {
     );
   }
 }
-function mapStateToProps(state) {
-  return {};
-}
 
-const ConnectedAppComponent = connect(mapStateToProps)(App);
+// using connect HOC to connect App component to store with dispatch as prop
+const ConnectedAppComponent = connect((state) => {
+  return {};
+})(App);
 export default ConnectedAppComponent;

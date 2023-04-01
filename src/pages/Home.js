@@ -5,20 +5,23 @@ import { handleGetProducts, sortProducts } from "../actions";
 
 import Loader from "../components/Loader";
 function Home(props) {
-  const { sortProducs, dispatch, products, addingProducts } = props;
+  const { isSortProducts, dispatch, products, addingProducts } = props;
+  // dispatching action to sort products
   const handleSortProducts = () => {
     dispatch(sortProducts(products));
   };
+  // dispatching action to unsort products
   const handleUnSortProducts = () => {
     dispatch(handleGetProducts());
   };
   if (addingProducts) {
+    // showing loader if fetching of products is taking place
     return <Loader />;
   }
   return (
     <div id={styles.homeContainer}>
       <div id={styles.sortUnsort}>
-        {sortProducs ? (
+        {isSortProducts ? (
           <div id={styles.unsort}>
             <span>Sort by price </span>
             <button onClick={handleUnSortProducts}> X </button>
@@ -34,11 +37,11 @@ function Home(props) {
 }
 function mapStateToProps(state) {
   return {
-    sortProducs: state.sortProducts,
+    isSortProducts: state.isSortProducts,
     products: state.products,
     addingProducts: state.addingProducts,
   };
 }
-
+// using connect HOC to connect CreateProduct component to store with dispatch,isSortProducts,products as prop
 const ConnectedHomeComponent = connect(mapStateToProps)(Home);
 export default ConnectedHomeComponent;

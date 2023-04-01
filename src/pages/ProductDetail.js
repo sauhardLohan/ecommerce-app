@@ -9,6 +9,7 @@ import Stars_2 from "../images/2_stars.png";
 import Star_1 from "../images/1_star.png";
 function ProductDetail(props) {
   const { products, cart } = props;
+  // getting product id from params
   const { productId } = useParams();
   if (products.length === 0) {
     return;
@@ -17,6 +18,14 @@ function ProductDetail(props) {
     return product.id.toString() === productId;
   })[0];
   const { dispatch } = props;
+  if (!product) {
+    // if trying to access a product not existing in API service 
+    return (
+      <h1 style={{ textAlign: "center" }}>
+        Product you are looking for does not exist
+      </h1>
+    );
+  }
   const { title, brand, price, rating, description, image } = product;
 
   const roundedRating = Math.round(rating);
@@ -31,6 +40,7 @@ function ProductDetail(props) {
       ? Stars_2
       : Star_1;
 
+  // finding if product is in cart
   function isProductInCart() {
     let a = [];
     if (cart.length > 0) {
@@ -41,9 +51,11 @@ function ProductDetail(props) {
 
     return a.length === 0 ? false : true;
   }
+  // dispatching action to add product to cart
   const handleAddToCartClick = () => {
     dispatch(addToCart(product));
   };
+  // dispatching action to remove product from cart
   const handleRemoveFromCartClick = () => {
     dispatch(removeFromCart(product));
   };
@@ -95,6 +107,6 @@ function mapStateToProps(state) {
     cart: state.cart,
   };
 }
-
+// using connect HOC to connect ProductDetail component to store with dispatch,cart,products as prop
 const ConnectedProductDetailComponent = connect(mapStateToProps)(ProductDetail);
 export default ConnectedProductDetailComponent;

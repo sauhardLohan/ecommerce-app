@@ -23,11 +23,12 @@ export default function ProductItem(props) {
   const { product, dispatch, productInCart, updatingProduct, deletingProduct } =
     props;
   const { title, brand, price, rating, description, edit, image, id } = product;
-  const [cTitle, setTitle] = useState(title);
-  const [cBrand, setBrand] = useState(brand);
-  const [cPrice, setPrice] = useState(price);
-  const [cRating, setRating] = useState(rating);
-  const [cDescription, setDescription] = useState(description);
+  // adding changed properties to state so that on clicking of save button dispatch an action to update product
+  const [changedTitle, setTitle] = useState(title);
+  const [changedBrand, setBrand] = useState(brand);
+  const [changedPrice, setPrice] = useState(price);
+  const [changedRating, setRating] = useState(rating);
+  const [changedDescription, setDescription] = useState(description);
   const [updating, setUpdating] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const roundedRating = Math.round(rating);
@@ -41,25 +42,38 @@ export default function ProductItem(props) {
       : roundedRating === 2
       ? Stars_2
       : Star_1;
+  // on edit button (pencil button) setting on edit mode for the product to be true
   const handleEditButtonClick = () => {
     dispatch(editProduct(id));
   };
+  // cancelling the changes
   const handleCancelButtonClick = () => {
     dispatch(cancelEditProduct(id));
   };
+  // saving the changes
   const handleSaveButtonClick = () => {
     setUpdating(true);
     dispatch(
-      handleUpdateProduct(id, cBrand, cDescription, cPrice, cRating, cTitle)
+      handleUpdateProduct(
+        id,
+        changedBrand,
+        changedDescription,
+        changedPrice,
+        changedRating,
+        changedTitle
+      )
     );
   };
+  // deleting product on click of garbage button
   const handleDeleteButtonClick = () => {
     setDeleting(true);
     dispatch(handleDeleteProduct(id));
   };
+  // adding to cart button
   const handleAddToCartClick = () => {
     dispatch(addToCart(product));
   };
+  // removing from cart
   const handleRemoveFromCartClick = () => {
     dispatch(removeFromCart(product));
   };
@@ -75,25 +89,25 @@ export default function ProductItem(props) {
               {edit ? (
                 <div className={styles.editHeading}>
                   <input
-                    value={cTitle}
+                    value={changedTitle}
                     onChange={(e) => {
                       setTitle(e.target.value);
                     }}
                   ></input>
                   <input
-                    value={cBrand}
+                    value={changedBrand}
                     onChange={(e) => {
                       setBrand(e.target.value);
                     }}
                   ></input>
                   <input
-                    value={cPrice}
+                    value={changedPrice}
                     onChange={(e) => {
                       setPrice(e.target.value);
                     }}
                   ></input>
                   <input
-                    value={cRating}
+                    value={changedRating}
                     onChange={(e) => {
                       setRating(e.target.value);
                     }}
@@ -101,9 +115,15 @@ export default function ProductItem(props) {
                 </div>
               ) : (
                 <>
-                  <Link to={`/product/${product.id}`}>
-                    <h2>{title}</h2>
-                  </Link>
+                {
+                  id<=28 ? <Link to={`/product/${product.id}`}>
+                  <h2>{title}</h2>
+                </Link>
+                : 
+                <h2>{title}</h2>
+
+                }
+                  
                   <h4>{brand}</h4>
                   <p>Price : {price}</p>
                   <div className={styles.ratingContainer}>
@@ -123,7 +143,7 @@ export default function ProductItem(props) {
               <>
                 <div className={styles.productDescription}>
                   <textarea
-                    value={cDescription}
+                    value={changedDescription}
                     onChange={(e) => {
                       setDescription(e.target.value);
                     }}
@@ -152,38 +172,40 @@ export default function ProductItem(props) {
                   <p>{description}</p>
                 </div>
                 {id <= 28 && (
-                <div className={styles.productChange}>
-                  {productInCart ? (
-                    <button
-                      className={styles.btnNotInCart}
-                      onClick={handleRemoveFromCartClick}
-                    >
-                      Remove from cart
-                    </button>
-                  ) : (
-                    <button onClick={handleAddToCartClick}>Add to cart</button>
-                  )}
-                  
+                  <div className={styles.productChange}>
+                    {productInCart ? (
+                      <button
+                        className={styles.btnNotInCart}
+                        onClick={handleRemoveFromCartClick}
+                      >
+                        Remove from cart
+                      </button>
+                    ) : (
+                      <button onClick={handleAddToCartClick}>
+                        Add to cart
+                      </button>
+                    )}
+
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"
+                      onClick={handleEditButtonClick}
+                      alt="edit-icon"
+                    />
+                    {deleting && deletingProduct ? (
                       <img
-                        src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"
-                        onClick={handleEditButtonClick}
-                        alt="edit-icon"
+                        src={Deleting_Image}
+                        style={{ cursor: "default" }}
+                        alt="deleting-icon"
                       />
-                      {deleting && deletingProduct ? (
-                        <img
-                          src={Deleting_Image}
-                          style={{ cursor: "default" }}
-                          alt="deleting-icon"
-                        />
-                      ) : (
-                        <img
-                          src={Delete_Image}
-                          onClick={handleDeleteButtonClick}
-                          alt="delete-icon"
-                        />
-                      )}
-                 
-                </div>)}
+                    ) : (
+                      <img
+                        src={Delete_Image}
+                        onClick={handleDeleteButtonClick}
+                        alt="delete-icon"
+                      />
+                    )}
+                  </div>
+                )}
               </>
             )}
           </div>

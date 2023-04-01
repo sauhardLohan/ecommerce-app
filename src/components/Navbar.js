@@ -17,6 +17,7 @@ function Navbar(props) {
       <div id={styles.rightNav}>
         <div id={styles.cart}>
           <div id={styles.cartContainer}>
+            {/* cart image is link to the cart  */}
             <Link to="/cart">
               <img
                 src="https://cdn-icons-png.flaticon.com/512/9374/9374328.png"
@@ -37,9 +38,10 @@ function Navbar(props) {
 }
 function mapStateToProps(state) {
   return {
+    // cartItemNumber is the number of items in cart
     cartItemNumber: state.cart.length,
   };
 }
-
+// using connect HOC to connect Navbar component to store with dispatch and cartItemNumber as prop
 const ConnectedNavbarComponent = connect(mapStateToProps)(Navbar);
 export default ConnectedNavbarComponent;

@@ -26,6 +26,9 @@ a {
 a:hover {
   color: rgb(5, 206, 206);
 }
+.toast-position {
+  top: 4rem !important;
+}
 
 .app-spinner {
   display: inline-block;
@@ -50,8 +53,4 @@ a:hover {
   to {
     -webkit-transform: rotate(360deg);
   }
-}
-
-.toast-position {
-  top: 4rem !important;
 }

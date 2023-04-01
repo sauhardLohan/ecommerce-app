@@ -2,9 +2,11 @@ import { connect } from "react-redux";
 import ProductItem from "./ProductItem";
 function Products(props) {
   const { products, dispatch, cart, updatingProduct, deletingProduct } = props;
+  // if products list not rendered or all products deleted
   if (products.length === 0) {
     return <h1 style={{ textAlign: "center" }}>No Products In List</h1>;
   }
+  // checking if product is in cart or not
   function isProductInCart(product) {
     let a = [];
     if (cart.length > 0) {
@@ -40,6 +42,6 @@ function mapStateToProps(state) {
     deletingProduct: state.deletingProduct,
   };
 }
-
+// using connect HOC to connect Products component to store with dispatch,products,cart,updatingProduct,deletingProduct as prop
 const ConnectedProductsComponent = connect(mapStateToProps)(Products);
 export default ConnectedProductsComponent;

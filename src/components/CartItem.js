@@ -11,6 +11,7 @@ export default function CartItem(props) {
   const { cartItem, dispatch } = props;
   const { title, brand, price, rating, description, image } = cartItem;
 
+  // getting rounded rating number to show the stars image accordingly
   const roundedRating = Math.round(rating);
   const ratingImage =
     roundedRating === 5
@@ -45,8 +46,6 @@ export default function CartItem(props) {
                 alt={`rating-${rating}`}
                 className={styles.ratings}
               />
-              {/* <p>{rating}</p> */}
-              {/* <img src="https://cdn-icons-png.flaticon.com/512/10125/10125652.png" />  */}
             </div>
           </div>
         </div>

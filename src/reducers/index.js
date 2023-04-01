@@ -17,35 +17,38 @@ import {
   SET_EDIT_PRODUCT,
   SORT_PRODUCTS,
   UPDATING_PRODUCT,
+  UPDATING_CART_PRODUCT,
 } from "../actions";
-
+// defining initial state for store
 const initialState = {
   products: [],
-  sortProducts: false,
+  isSortProducts: false,
   cart: [],
   deletingProduct: false,
   updatingProduct: false,
   addingProducts: false,
   addingAProduct: false,
 };
-
+// function to return product with specific id
 function findProduct(id, products) {
   return products.filter((product) => product.id === id)[0];
 }
-
+// setting the value of edit for a specific product
 function setEdit(id, products, edit) {
   const product = findProduct(id, products);
   product.edit = edit;
   return products;
 }
-
+// updating product with deatils of newProduct provided
 function setUpdateProduct(products, newProduct) {
   let product = findProduct(newProduct.id, products);
   newProduct.edit = false;
-  Object.assign(product, newProduct);
+  if (product) {
+    Object.assign(product, newProduct);
+  }
   return products;
 }
-
+// deleting product with specific id
 function setDeleteProduct(id, products) {
   return products.filter((product) => product.id !== id);
 }
@@ -54,7 +57,7 @@ export default function productsReducer(state = initialState, action) {
   let updatedCart;
   switch (action.type) {
     case ADD_PRODUCTS:
-      return { ...state, products: action.products, sortProducts: false };
+      return { ...state, products: action.products, isSortProducts: false };
     case ADDING_PRODUCTS:
       return {
         ...state,
@@ -69,7 +72,7 @@ export default function productsReducer(state = initialState, action) {
       return {
         ...state,
         products: action.products,
-        sortProducts: true,
+        isSortProducts: true,
       };
     case SET_EDIT_PRODUCT:
       return {
@@ -128,6 +131,7 @@ export default function productsReducer(state = initialState, action) {
         addingAProduct: false,
       };
     case ADD_TO_CART:
+      // adding product in cart and setting updated cart in local storage
       updatedCart = [action.product, ...state.cart];
       localStorage.setItem("cart", JSON.stringify(updatedCart));
       return {
@@ -135,6 +139,7 @@ export default function productsReducer(state = initialState, action) {
         cart: updatedCart,
       };
     case REMOVE_FROM_CART:
+      // removinng product from cart and setting updated cart in local storage
       updatedCart = state.cart.filter((cartItem) => {
         return cartItem.id !== action.product.id;
       });
@@ -144,9 +149,18 @@ export default function productsReducer(state = initialState, action) {
         cart: updatedCart,
       };
     case SETTING_CART:
+      // setting cart in store if present in local storage
       return {
         ...state,
         cart: action.cart,
+      };
+    case UPDATING_CART_PRODUCT:
+      // updating product in cart and setting updated cart in local storage
+      updatedCart = [...setUpdateProduct(state.cart, action.product)];
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      return {
+        ...state,
+        cart: updatedCart,
       };
 
     default:

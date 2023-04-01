@@ -11,6 +11,7 @@ function CreateProduct(props) {
   const [description, setDescription] = useState("");
   const { dispatch, addingAProduct } = props;
   const handleSubmit = (e) => {
+    // dispatching action to add product if none of the fields are empty and price and rating are numbers with rating being between (1 to 5)
     e.preventDefault();
     let error = false;
     if (!title && !brand && !price && !rating && !image && !description) {
@@ -37,7 +38,6 @@ function CreateProduct(props) {
     if (error) {
       return;
     }
-    e.preventDefault();
     dispatch(handleAddProduct(brand, description, price, rating, title, image));
   };
   return (
@@ -129,6 +129,6 @@ function mapStateToProps(state) {
     addingAProduct: state.addingAProduct,
   };
 }
-
+// using connect HOC to connect CreateProduct component to store with dispatch and addingAProduct as prop
 const ConnectedCreateProductComponent = connect(mapStateToProps)(CreateProduct);
 export default ConnectedCreateProductComponent;

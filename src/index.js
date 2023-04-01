@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import App from "./components/App";
 import { SHOW_NOTIFICATION } from "./actions";
+// creating thunk middleware so that if a action is of type function it will the action with dispatch as argument
 const thunk =
   ({ dispatch, getState }) =>
   (next) =>
@@ -18,15 +19,7 @@ const thunk =
     }
     next(action);
   };
-const logger =
-  ({ dispatch, getState }) =>
-  (next) =>
-  (action) => {
-    if (typeof action !== "function") {
-      console.log(action.type);
-    }
-    next(action);
-  };
+// creating notification middleware to show notifications
 const notification =
   ({ dispatch, getState }) =>
   (next) =>
@@ -58,10 +51,12 @@ const notification =
     }
     next(action);
   };
+// creating store with productsReducer as reducer and thunk,notification middlewares
 const store = createStore(
   productsReducer,
-  applyMiddleware(logger, thunk, notification)
+  applyMiddleware(thunk, notification)
 );
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 export const StoreContext = createContext();
 
@@ -70,6 +65,7 @@ root.render(
     <Provider store={store}>
       <App />
       <ToastContainer
+        // giving class to toast container to change position of notifiaction bar
         className="toast-position"
         position="top-left"
         autoClose={5000}

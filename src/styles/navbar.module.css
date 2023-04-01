@@ -32,7 +32,7 @@
 }
 #nav #leftDiv {
   display: flex;
-  color: #fff;
+  color: white;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -40,7 +40,7 @@
 }
 #nav a {
   display: flex;
-  color: #fff;
+  color: white;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -62,7 +62,7 @@
 }
 #nav #rightNav {
   display: flex;
-  color: #fff;
+  color: white;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
