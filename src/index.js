@@ -45,7 +45,7 @@ const notification =
           pauseOnHover: true,
           draggable: false,
           progress: undefined,
-          theme: "colored",
+          theme: "light",
         });
       }
     }

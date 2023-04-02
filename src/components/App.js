@@ -6,7 +6,7 @@ import Navbar from "./Navbar";
 import { handleGetProducts } from "../actions";
 class App extends React.Component {
   componentDidMount() {
-    // getting products by dispatching action
+    // getting products by dispatching action handleGetProducts
     const { dispatch } = this.props;
     dispatch(handleGetProducts());
   }

@@ -203,6 +203,7 @@ export function handleGetProducts() {
         const newProducts = response.data.map((product) => {
           return {
             ...product,
+              // adding edit property to every item which will be set true on click of edit button(pencil button )
             edit: false,
           };
         });

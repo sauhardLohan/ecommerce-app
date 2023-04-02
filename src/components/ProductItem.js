@@ -7,6 +7,7 @@ import {
   cancelEditProduct,
   handleUpdateProduct,
   handleDeleteProduct,
+  
   addToCart,
   removeFromCart,
 } from "../actions";
@@ -78,6 +79,8 @@ export default function ProductItem(props) {
     dispatch(removeFromCart(product));
   };
   return (
+    // removed properties for products that are added through createProduct, which are to edit,delete,and access it's productDetail page, because the products added are dummy 
+    // objects and are not actually added to API service 
     <>
       <div className={styles.container}>
         <div className={styles.productContainer}>
