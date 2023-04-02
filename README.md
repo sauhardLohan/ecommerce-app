@@ -87,7 +87,7 @@ to install:
 
 ### `npm i react-redux`
 
-## Used react-toastify to show notification
+## Used react-toastify to show notifications
 
 to install:
 
