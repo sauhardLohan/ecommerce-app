@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { showNotification } from "../actions";
 
 import {
   editProduct,
@@ -53,6 +54,12 @@ export default function ProductItem(props) {
   };
   // saving the changes
   const handleSaveButtonClick = () => {
+    if (changedRating>5){
+      dispatch(
+        showNotification("Rating of Product should be between 1 and 5", false)
+      );
+      return ;
+    }
     setUpdating(true);
     dispatch(
       handleUpdateProduct(
@@ -176,6 +183,7 @@ export default function ProductItem(props) {
                 </div>
                 {id <= 28 && (
                   <div className={styles.productChange}>
+                    <div id={styles.cartAddDel}>
                     {productInCart ? (
                       <button
                         className={styles.btnNotInCart}
@@ -188,7 +196,8 @@ export default function ProductItem(props) {
                         Add to cart
                       </button>
                     )}
-
+                    </div>
+                    <div id={styles.editItem}>
                     <img
                       src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"
                       onClick={handleEditButtonClick}
@@ -207,6 +216,8 @@ export default function ProductItem(props) {
                         alt="delete-icon"
                       />
                     )}
+                    </div>
+                    
                   </div>
                 )}
               </>

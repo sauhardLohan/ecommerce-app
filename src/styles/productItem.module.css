@@ -27,6 +27,7 @@
   display: flex;
   flex-direction: column;
   padding: 8px;
+  padding-right: 12px;
 }
 
 .productDetail .productImage {
@@ -117,7 +118,6 @@
   flex-grow: 1;
   display: inline-flex;
   justify-content: space-between;
-  margin-right: 10px;
 }
 
 .productHelp .productChange img {
@@ -150,7 +150,6 @@
 
 .productHelp button:after {
   width: 120px;
-
   background-clip: padding-box;
   background-color: #1cb0f6;
   border: solid transparent;
@@ -173,4 +172,14 @@
 .productHelp .btnNotInCart:after {
   background-color: #f6391c;
   width: 180px;
+}
+
+#cartAddDel{
+  width: 40%;
+}
+
+#editItem{
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
 }
