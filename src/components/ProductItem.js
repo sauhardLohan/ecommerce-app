@@ -8,7 +8,6 @@ import {
   cancelEditProduct,
   handleUpdateProduct,
   handleDeleteProduct,
-  
   addToCart,
   removeFromCart,
 } from "../actions";
